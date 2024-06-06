@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Objects</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <form>
+        <fieldset class="Inheritance">
+            <legend>Inheritance</legend>
+
+            <fieldset class="Class-1">
+                <legend>Class-1(Student)</legend>
+                <label>Enter Name:</label>
+                <input type="text" placeholder="Enter full name" id="stu_name">
+                <br><br>
+                <label>Enter Age:</label>
+                <input type="text" placeholder="Enter the age" id="stu_age">
+                <br><br>
+                <label>Enter Gender:</label>
+                <input type="text" placeholder="Enter the gender" id="stu_gender">
+                <br><br>
+            </fieldset>
+
+            <fieldset class="Class-2">
+                <legend>Class-2(Employee)</legend>
+                <label>Enter Dept id:</label>
+                <input type="text" placeholder="Enter dept id" id="dept_id">
+                <br><br>
+                <label>Enter Dept name:</label>
+                <input type="text" placeholder="Enter the dept name" id="dept_name">
+
+            </fieldset>
+
+            <input type="button" value="Submit" class="button" onclick="submitDetails()">
+            <input type="reset" value="Clear" class="button">
+            <input type="reset" value="Delete Row" class="button" onclick="Reset()">
+        </fieldset>
+    </form>
+
+    <div class="output">
+        <h1>Output:</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Dept id</th>
+                    <th>Dept name</th>
+                </tr>
+            </thead>
+            <tbody id="outputTable">
+            </tbody>
+        </table>
+
+        <p class="out"><span id="out"></span></p>
+    </div>
+
+    <script>
+        class Student {
+            constructor(name, age, gender) {
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+            }
+        }
+
+        class Employee extends Student {
+            constructor(name, age, gender, dept_id, dept_name) {
+                super(name, age, gender);
+                this.dept_id = dept_id;
+                this.dept_name = dept_name;
+            }
+        }
+
+        let employees = [];
+
+        function submitDetails() {
+            let name = document.getElementById("stu_name").value;
+            let age = document.getElementById("stu_age").value;
+            let gender = document.getElementById("stu_gender").value;
+            let dept_id = document.getElementById("dept_id").value;
+            let dept_name = document.getElementById("dept_name").value;
+
+            let newEmployee = new Employee(name, age, gender, dept_id, dept_name);
+            let push=employees.push(newEmployee);
+
+            if(push==true)
+            {
+                document.getElementById("out").innerHTML = '--------Record available--------';
+                document.getElementById("out").style.color="green";
+
+            }
+
+            displayEmployees();
+        }
+
+        function displayEmployees() {
+            let outputTable = document.getElementById("outputTable");
+            outputTable.innerHTML = ''; // Clear previous output
+
+            
+            employees.forEach(employee => {
+              
+                let row = `<tr>
+                    <td>${employee.name}</td>
+                    <td>${employee.age}</td>
+                    <td>${employee.gender}</td>
+                    <td>${employee.dept_id}</td>
+                    <td>${employee.dept_name}</td>
+                </tr>`;
+            
+            //     if(employee.name==null)
+            // {
+            //     document.getElementById("out").innerHTML = 'Please specify value before submitting';
+            // }
+
+            
+                outputTable.innerHTML += row;
+            });
+
+        
+           
+        }
+
+       
+        function Reset() {
+            let pop1=employees.pop();
+    
+            document.getElementById("stu_name").value = '';
+            document.getElementById("stu_age").value = '';
+            document.getElementById("stu_gender").value = '';
+            document.getElementById("dept_id").value = '';
+            document.getElementById("dept_name").value = '';
+            document.getElementById("out").innerHTML = '';
+           
+        
+           if(pop1==null)
+            {
+                document.getElementById("out").innerHTML = '--------No record available--------';
+                document.getElementById("out").style.color="red";
+            }
+            
+    
+            displayEmployees();
+
+        }
+    </script>
+</body>
+
+</html>

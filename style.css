@@ -1,0 +1,51 @@
+.Inheritance
+{
+    border: 4px solid red;
+    font-size: 20px;
+}
+
+.Class-1,.Class-2
+{
+    margin-bottom: 10px;
+    border: 4px solid green;
+}
+
+.button
+{
+    width: 90px;
+}
+
+.output
+{
+    border:4px solid black;
+    width: 100% ;
+    height:auto;
+    margin-top: 10px;
+}
+h1
+{
+    margin-left: 15px;
+}
+
+table,th,td{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding:20px;
+    width: auto;    
+    /* margin-top: 30px;
+    margin-bottom: 20px; */
+    margin: 16px;
+
+}
+
+#td1,#td2,#td3,#td4,#td5
+{
+    color: green;
+}
+
+.out
+{
+    font-size: 20px;
+    font-weight: 900;
+   margin-left: 100px;
+}
